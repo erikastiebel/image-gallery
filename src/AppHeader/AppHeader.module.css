@@ -1,0 +1,17 @@
+.container {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}

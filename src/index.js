@@ -1,17 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import { Button } from "reactstrap";
+import AppHeader from "./AppHeader/AppHeader";
+import AppContent from "./AppContent/AppContent";
+import "bootstrap/dist/css/bootstrap.css";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  function ErrorFallback({ error }) {
+    return (
+      <div role="alert" className="error-wrapper">
+        <p className="error-message">Ooops, something went wrong...</p>
+        <Button
+          onClick={() => window.location.reload()}
+          className="custom-btn"
+          size="sm"
+        >
+          Try again
+        </Button>
+      </div>
+    );
+  }
+  return (
+    <>
+      <AppHeader />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <AppContent />
+      </ErrorBoundary>
+    </>
+  );
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<App />, document.getElementById("root"));
